@@ -27,7 +27,7 @@ let runCommand = async function (command) {
 let commands = [
   'git add -A',
   `git push origin ${origin}`,
-  `npm publish --tag ${tag}`
+  `npm publish --tag ${tag}`,
   'cnpm sync npm-dyq-test'
 ]
 Promise.all(commands.map(command => {
