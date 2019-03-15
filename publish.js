@@ -10,7 +10,6 @@ process.argv.forEach(item => {
     origin = item.replace(/^origin=/, '')
   }
 })
-console.log('version tag: ', tag)
 let commands = [
   'git add -A',
   `git push origin ${origin}`,
