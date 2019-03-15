@@ -17,8 +17,5 @@ let commands = [
   'cnpm sync npm-dyq-test'
 ]
 commands.forEach(command => {
-  const ls = execSync(command)
-  ls.stdout.on('data', data => {
-    console.log(data)
-  })
+  console.log(execSync(command))
 })
