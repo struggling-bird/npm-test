@@ -2,16 +2,28 @@ let {execSync} = require('child_process')
 
 let tag = 'latest'
 let origin = 'master'
+let version = 'patch'
 process.argv.forEach(item => {
-  if (/^tag=/.test(item)) {
-    item = item.replace(/\s/g, '') // 去除空格
-    tag = item.replace(/^tag=/, '')
-  } else if (/^origin=/.test(item)) {
-    origin = item.replace(/^origin=/, '')
+  if (/=/.test(item)) {
+    let key = item.split('=')[0]
+    let value = item.split('=')[1]
+    switch (key) {
+      case 'tag':
+        tag = value
+        break
+      case 'origin':
+        origin = value
+        break
+      case 'version':
+        version = value
+        break
+    }
   }
 })
 let commands = [
   'git add -A',
+  'git commit -m "update"',
+  `npm version ${version}`,
   `git push origin ${origin}`,
   `npm publish --tag ${tag}`,
   'cnpm sync npm-dyq-test'
