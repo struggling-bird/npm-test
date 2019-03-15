@@ -11,6 +11,7 @@ process.argv.forEach(item => {
   }
 })
 let runCommand = async function (command) {
+  console.log('>>>>>>>>>>>>>>>>>>',command)
   return new Promise((resolve, reject) => {
     const ls = exec(command, err => {
       if (err) {
@@ -20,7 +21,7 @@ let runCommand = async function (command) {
       }
     })
     ls.stdout.on('data', (data) => {
-      console.log('%c', 'color: #0ea1eb', data);
+      console.log(data);
     });
   })
 }
