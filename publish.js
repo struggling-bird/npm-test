@@ -6,7 +6,7 @@ process.argv.forEach(item => {
   if (/^tag=/.test(item)) {
     item = item.replace(/\s/g, '') // 去除空格
     tag = item.replace(/^tag=/, '')
-  } else if (/^origin=/) {
+  } else if (/^origin=/.test(item)) {
     origin = item.replace(/^origin=/, '')
   }
 })
