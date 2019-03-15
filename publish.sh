@@ -14,9 +14,9 @@ git add -A
 git commit -m 'version update'
 
 read -p "发布版本标签（latest）：" tag
-if [ ! -n $tag ];then
-  npm publish
-else
+if [ $tag ];then
   npm publish --tag $tag
+else
+  npm publish
 fi
 cnpm sync npm-dyq-test
