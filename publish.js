@@ -10,7 +10,7 @@ process.argv.forEach(item => {
     origin = item.replace(/^origin=/, '')
   }
 })
-let runCommand = async function (command) {
+let runCommand = function (command) {
   console.log('>>>>>>>>>>>>>>>>>>',command)
   return new Promise((resolve, reject) => {
     const ls = exec(command, err => {
@@ -31,8 +31,6 @@ let commands = [
   `npm publish --tag ${tag}`,
   'cnpm sync npm-dyq-test'
 ]
-Promise.all(commands.map(command => {
-  return runCommand(command)
-})).then(() => {
-  console.log('>>>>>>>>>>>>over')
+commands.forEach(async command => {
+  await runCommand(command)
 })
