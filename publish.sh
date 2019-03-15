@@ -4,7 +4,7 @@ git add -A;
 read -p "提交内容：" msg
 git commit -m $msg
 
-branch = `git symbolic-ref --short -q HEAD`
+$branch = `git symbolic-ref --short -q HEAD`
 git push origin $branch
 
 echo -e "\033[32m npm version <newversion> | major | minor | patch | premajor | preminor | prepatch | prerelease \033[0m"
