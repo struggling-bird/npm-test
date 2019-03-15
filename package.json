@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "publish": "node publish.js"
   },
   "repository": {
     "type": "git",
