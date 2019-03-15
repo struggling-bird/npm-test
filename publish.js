@@ -1,4 +1,4 @@
-let {exec} = require('child_process')
+let {execSync} = require('child_process')
 
 let tag = 'latest'
 let origin = 'master'
@@ -10,27 +10,15 @@ process.argv.forEach(item => {
     origin = item.replace(/^origin=/, '')
   }
 })
-let runCommand = function (command) {
-  console.log('>>>>>>>>>>>>>>>>>>',command)
-  return new Promise((resolve, reject) => {
-    const ls = exec(command, err => {
-      if (err) {
-        reject(err)
-      } else {
-        resolve()
-      }
-    })
-    ls.stdout.on('data', (data) => {
-      console.log(data);
-    });
-  })
-}
 let commands = [
   'git add -A',
   `git push origin ${origin}`,
   `npm publish --tag ${tag}`,
   'cnpm sync npm-dyq-test'
 ]
-commands.forEach(async command => {
-  await runCommand(command)
+commands.forEach(command => {
+  const ls = execSync(command)
+  ls.stdout.on('data', data => {
+    console.log(data)
+  })
 })

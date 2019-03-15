@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/struggling-bird/npm-test/issues"
   },
-  "homepage": "https://github.com/struggling-bird/npm-test#readme"
+  "homepage": "https://github.com/struggling-bird/npm-test#readme",
+  "devDependencies": {
+    "shelljs": "^0.8.3"
+  }
 }
