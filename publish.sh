@@ -14,8 +14,7 @@ git add -A
 git commit -m 'version update'
 
 read -p "发布版本标签（latest）：" tag
-if [$tag]
-then
+if [ ! -n $tag ];then
   npm publish
 else
   npm publish --tag $tag
