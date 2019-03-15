@@ -10,15 +10,28 @@ process.argv.forEach(item => {
     origin = item.replace(/^origin=/, '')
   }
 })
+let runCommand = async function (command) {
+  return new Promise((resolve, reject) => {
+    const ls = exec(command, err => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve()
+      }
+    })
+    ls.stdout.on('data', (data) => {
+      console.log(data);
+    });
+  })
+}
 let commands = [
   'git add -A',
   `git push origin ${origin}`,
-  `npm publish --tag ${tag}`,
+  `npm publish --tag ${tag}`
   'cnpm sync npm-dyq-test'
-].join(';')
-const ls = exec(commands)
-
-ls.stdout.on('data', (data) => {
-  console.log(data);
-});
-
+]
+Promise.all(commands.map(command => {
+  return runCommand(command)
+})).then(() => {
+  console.log('>>>>>>>>>>>>over')
+})
