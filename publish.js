@@ -20,7 +20,7 @@ let runCommand = async function (command) {
       }
     })
     ls.stdout.on('data', (data) => {
-      console.log(data);
+      console.log('%c', 'color: #0ea1eb', data);
     });
   })
 }
