@@ -11,13 +11,11 @@ process.argv.forEach(item => {
   }
 })
 let commands = [
-  'cwd',
-  'ls',
   'git add -A',
   `git push origin ${origin}`,
   `npm publish --tag ${tag}`,
   'cnpm sync npm-dyq-test'
-].join('&')
+].join(';')
 const ls = exec(commands)
 
 ls.stdout.on('data', (data) => {
