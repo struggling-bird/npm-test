@@ -1,4 +1,4 @@
-let {spawn} = require('child_process')
+let {exec} = require('child_process')
 
 let tag = 'latest'
 let origin = 'master'
@@ -17,22 +17,9 @@ let commands = [
   `npm publish --tag ${tag}`,
   'cnpm sync npm-dyq-test'
 ].join('&')
-const ls = spawn(commands)
+const ls = exec(commands)
 
 ls.stdout.on('data', (data) => {
-  console.log(`stdout: ${data}`);
+  console.log(data);
 });
 
-ls.stderr.on('data', (data) => {
-  console.log(`stderr: ${data}`);
-});
-
-ls.on('close', (code) => {
-  console.log(`child process exited with code ${code}`);
-});
-
-// 编译代码
-// git commit
-// git push
-// publish
-// sync
