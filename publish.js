@@ -11,6 +11,8 @@ process.argv.forEach(item => {
   }
 })
 let commands = [
+  'cwd',
+  'ls',
   'git add -A',
   `git push origin ${origin}`,
   `npm publish --tag ${tag}`,
